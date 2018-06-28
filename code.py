@@ -16,7 +16,4 @@ if __name__ == "__main__":
         game.show_board(display)
         game.next_gen()
         sleep(0.05)
-        counter += 1
-        if counter % 50 == 0:
-            counter = 0
-            game.randomize()
+        game.check_dead_state()

@@ -5,6 +5,8 @@ class Board(object):
     def __init__(self, length, height):
         self._length = length
         self._height = height
+        self._prev_state = 0
+        self._prev_state_2 = 0
         self._board = [ [ cell.Cell() for _ in range(self._height)] \
                          for _ in range(self._length) ]
         
@@ -58,6 +60,23 @@ class Board(object):
                                           [neighbor_j % self._height]
                     neighbors_states.append(neighbor._state)
         return neighbors_states
+
+
+    def check_dead_state(self):
+        state_value = 0
+        for i in range(self._length):
+            for j in range(self._height):
+                if self._board[i][j]._state == 1:
+                    state_value += (i^j * j^i)
+    
+        if state_value in [self._prev_state, self._prev_state_2]:
+            self.randomize()
+            self._prev_state = 0
+            self._prev_state_2 = 0
+            return
+    
+        self._prev_state_2 = self._prev_state
+        self._prev_state = state_value
 
 
     def randomize(self):

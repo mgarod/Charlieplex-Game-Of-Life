@@ -20,7 +20,7 @@ class Board(object):
         for i in range(self._length):
             for j in range(self._height):
                 if self._board[i][j]._state == 1:
-                    display.pixel(i, j, 64)
+                    display.pixel(i, j, 16)
                 else:
                     display.pixel(i, j, 0)
             

@@ -17,3 +17,6 @@ if __name__ == "__main__":
         game.next_gen()
         sleep(0.05)
         game.check_dead_state()
+        counter += 1
+        if counter == 100:
+        	game.randomize()
